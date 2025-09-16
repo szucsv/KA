@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: purple;
+    padding: 10px;
+  }
+
+  header .box {
+    width: 60px;
+    height: 25px;
+    background-color: cyan;
+  }
+
+  main {
+    display: flex;
+    flex: 1;
+  }
+
+  .left {
+    flex: 3;
+    background-color: yellow;
+  }
+
+  .right {
+    flex: 1;
+    background-color: green;
+  }

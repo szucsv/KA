@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  header {
+    background-color: purple;
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+  }
+
+  header .box {
+    width: 60px;
+    height: 25px;
+    background-color: cyan;
+    margin-left: 7px;
+  }
+
+  main {
+    flex: 1;
+    display: flex;
+    margin-bottom: 7px;
+  }
+
+  aside {
+    background-color: green;
+    flex: 1;
+    min-width: 200px;
+    margin-right: 7px;
+  }
+
+  section {
+    background-color: yellow;
+    flex: 3;
+  }
+
+  footer {
+    background-color: gray;
+    padding: 20px;
+    text-align: center;
+  }
