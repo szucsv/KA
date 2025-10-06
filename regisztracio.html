@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regisztáció</title>
+        <style>
+        body{
+            text-align: center;
+            margin-top: 25%;
+        }
+    </style>
+</head>
+<body>
+    <label>E-mail cím:</label>
+    <input type="text" id="EmailCim" placeholder="admin@vasvari.org">
+    <br>
+        <label>Jelszó:</label>
+    <input type="password" id="password" placeholder="Alma123">
+    <br>
+        <label>Jelszó újra:</label>
+    <input type="password" id="password2" placeholder="Alma123">
+    <br>
+    <button onclick="reg()">Regisztráció</button>
+    <br>
+    <br>
+    <div id="regin"><p></p></div>
+    <script>
+        const write=document.getElementById("regin")
+        const inputemail=document.getElementById("EmailCim")
+        const inputpassword=document.getElementById("password")
+        const inputpassword2=document.getElementById("password2")
+        const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+        function reg() {
+
+            if(inputemail && inputpassword && inputpassword2) {
+
+                if (!re.test(inputemail.value))
+                {
+                    alert("Nem jó az email cím.")
+                    return
+                }
+
+                if (inputpassword2.value !== inputpassword.value)
+                {
+                    alert("Nem egyezik meg a két jelszó")
+                    return
+                }
+
+                alert("Sikeres bejelentkezés!")
+            } else {
+                alert
+            }
+        }
+    </script>
+</body>
+</html>
