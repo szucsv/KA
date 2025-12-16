@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Csoportkor</title>
+    <style>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 15px;
+    background-color: #f0f4f8;
+    color: #333;
+}
+
+h2 {
+    border-bottom: 2px solid #bbb;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+#teamList .team {
+    display: flex;
+    justify-content: space-between; /* név balra, gombok jobbra */
+    align-items: center;
+    background-color: #ffffff;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 5px solid #4caf50;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.1s ease;
+}
+
+#teamList .team:hover {
+    transform: scale(1.02);
+}
+
+#teamList .team span {
+    font-weight: 600;
+}
+
+#teamList .team .buttons {
+    display: flex;
+}
+
+#teamList .team button {
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s ease;
+}
+
+button.add {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+button.add:hover {
+    background-color: #115293;
+}
+
+button.edit {
+    background-color: #ffc107;
+    color: #333;
+}
+
+button.edit:hover {
+    background-color: #e6ac00;
+}
+
+button.remove {
+    background-color: #f44336;
+    color: #fff;
+}
+
+button.remove:hover {
+    background-color: #ba000d;
+}
+
+input#newTeam {
+    padding: 6px 12px;
+    width: 60%;
+    margin-right: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+#matchList {
+    list-style: none;
+    padding-left: 0;
+}
+
+#matchList li {
+    background-color: #ffffff;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border-left: 5px solid #2196f3;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+</style>
+
+</head>
+<body>
+
+    <h2>Csapatok</h2>
+    <div id="teamList"></div>
+    <br>    
+    <input type="text" id="newTeam" placeholder="Új csapat neve">
+    <button onclick="addTeam()">Hozzáadás</button>
+
+    <h2>Meccsek</h2>
+    <ul id="matchList"></ul>
+
+    <script>
+    let teams = [
+    { name: "Spanyolország" },
+    { name: "Zöld-foki Köztársaság" },
+    { name: "Szaúd-arábia" },
+    { name: "Uruguay" }
+    ];
+
+    function matches() {
+        const matchList = document.getElementById("matchList");
+        matchList.innerHTML = "";
+
+        for (let i = 0; i < teams.length; i++) {
+            for (let j = i + 1; j < teams.length; j++) {
+                matchList.innerHTML += `<li>${teams[i].name} - ${teams[j].name}</li>`;
+            }
+        }
+    }
+
+    function renderTeams() {
+        const teamList = document.getElementById("teamList");
+        teamList.innerHTML = "";
+
+        teams.forEach((team, index) => {
+            const div = document.createElement("div");
+            div.className = "team";
+
+            div.innerHTML = `<span>${team.name}</span>
+                         <button onclick="removeTeam(${index})">❌</button>
+                         <button onclick="editTeam(${index})">Módosítás</button>`;
+
+            teamList.appendChild(div);
+        });
+
+        matches();
+    }
+
+
+        function addTeam() {
+            const input = document.getElementById("newTeam");
+            const name = input.value.trim();
+
+            if (!name) {
+                alert("Írj be egy nevet!");
+                return;
+            }
+
+            if (teams.includes(name)) {
+                alert(`${name} már szerepel a csapatok között!`);
+                return;
+            }
+
+            teams.push({name});
+            input.value = "";
+            renderTeams();
+        }
+        function removeTeam(index) {
+            teams.splice(index, 1);
+            renderTeams();
+        }
+        function editTeam(index) {
+            const newName = prompt("Új név:", teams[index].name);
+            if (!newName) return;
+            teams[index].name = newName;
+            renderTeams();
+        }
+
+
+        renderTeams();
+    </script>
+
+</body>
+</html>
