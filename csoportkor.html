@@ -22,7 +22,7 @@ h2 {
 
 #teamList .team {
     display: flex;
-    justify-content: space-between; /* név balra, gombok jobbra */
+    justify-content: space-between;
     align-items: center;
     background-color: #ffffff;
     padding: 8px 12px;
@@ -33,17 +33,6 @@ h2 {
     transition: transform 0.1s ease;
 }
 
-#teamList .team:hover {
-    transform: scale(1.02);
-}
-
-#teamList .team span {
-    font-weight: 600;
-}
-
-#teamList .team .buttons {
-    display: flex;
-}
 
 #teamList .team button {
     padding: 4px 10px;
@@ -59,26 +48,15 @@ button.add {
     color: #fff;
 }
 
-button.add:hover {
-    background-color: #115293;
-}
-
 button.edit {
     background-color: #ffc107;
     color: #333;
 }
 
-button.edit:hover {
-    background-color: #e6ac00;
-}
 
 button.remove {
     background-color: #f44336;
     color: #fff;
-}
-
-button.remove:hover {
-    background-color: #ba000d;
 }
 
 input#newTeam {
