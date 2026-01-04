@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Fetch</title>
+</head>
+<style>
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f7fa;
+    padding: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.user-card {
+    background-color: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-card div {
+    margin-bottom: 6px;
+}
+
+.user-card strong {
+    color: #4a90e2;
+}
+
+</style>
+<body>
+    <body>
+    <div class="container" id="users"></div>
+
+    <script>
+        const container = document.getElementById("users");
+
+        fetch('https://surveys-5jvt.onrender.com/api/users/')
+        .then(response => {
+            if (!response.ok) throw new Error('Network response was not ok');
+            return response.json();
+        })
+        .then(users => {
+            users.forEach(user => {
+                const card = document.createElement("div");
+                card.classList.add("user-card");
+
+                card.innerHTML = `
+                    <div><strong>ID:</strong> ${user.id}</div>
+                    <div><strong>First name:</strong> ${user.firstName}</div>
+                    <div><strong>Last name:</strong> ${user.lastName}</div>
+                    <div><strong>Email:</strong> ${user.email}</div>
+                    <div><strong>Password:</strong> ${user.password}</div>
+                `;
+
+                container.appendChild(card);
+            });
+        })
+        .catch(error => {
+            console.error('Fetch error:', error);
+        });
+    </script>
+</body>
+</html>
