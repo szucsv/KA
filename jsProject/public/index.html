@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+  <title>Piák Katalógus</title>
+
+</head>
+<body>
+
+  <header>
+    <h2>🍻 Piák Gyűjtemény</h2>
+    <div id="auth-guest">
+      <input type="text" id="username" placeholder="Felhasználónév" />
+      <input type="password" id="password" placeholder="Jelszó" />
+      <button onclick="login()">Belépés</button>
+      <button class="secondary" onclick="register()">Regisztráció</button>
+    </div>
+    <div id="auth-user" class="hidden">
+      <span id="welcome-msg" style="margin-right: 10px;"></span>
+      <button class="danger" onclick="logout()">Kijelentkezés</button>
+    </div>
+  </header>
+
+  <!-- Új pia hozzáadása / szerkesztése (csak belépve látszik) -->
+  <div id="editor-box" class="box hidden">
+    <h3 id="form-title">Új pia hozzáadása</h3>
+    <input type="hidden" id="edit-id" />
+    <div class="form-row">
+      <input type="text" id="drink-name" placeholder="Ital neve (pl. Házi Pálinka)" />
+      <input type="text" id="drink-type" placeholder="Típus (pl. Rövidital, Sör, Bor, Koktél)" />
+      <input type="text" id="drink-alcohol" placeholder="Alkoholfok (pl. 50%)" />
+      <textarea id="drink-desc" placeholder="Leírás, ízjegyek..."></textarea>
+      <label>Kép feltöltése: <input type="file" id="drink-image" accept="image/*" /></label>
+      <label><input type="checkbox" id="drink-public" checked /> Publikus (mindenki láthatja)</label>
+    </div>
+    <button onclick="saveDrink()">Mentés</button>
+    <button class="secondary hidden" id="cancel-edit" onclick="resetForm()">Mégse</button>
+  </div>
+
+  <!-- Saját piák szekció (csak belépve látszik) -->
+  <div id="my-drinks-section" class="box hidden">
+    <h3>Saját piáim (szerkeszthető / törölhető)</h3>
+    <div id="my-drinks-list" class="grid"></div>
+  </div>
+
+  <!-- Publikus piák szekció (mindenkinek látszik) -->
+  <div class="box">
+    <h3>Publikus piák</h3>
+    <div id="public-drinks-list" class="grid"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
